@@ -1,0 +1,24 @@
+---
+description: Core layout, routing, and logic-separation rules for the Healio dashboard
+alwaysApply: true
+---
+
+# Healio dashboard rules
+
+- **Layout & structure**
+  - Use the global `AppLayout` pattern: `Sidebar` + `PageContainer` (or their future equivalents) wrapping all routed pages.
+  - The main app entry (`App.jsx` or router root) should stay small and only compose global layout and routes, not business logic.
+
+- **Routing & pages**
+  - Prefer React Router for navigation between dashboard sections (e.g. Dashboard, Habits, Analytics, Settings) instead of manual state switches.
+  - Keep each route's main UI in a dedicated "page" component; pages should be responsible for layout of their area, not global layout shell.
+
+- **Separation of UI vs logic**
+  - The user owns business logic, data flows, and calculations; the AI should focus on UI structure, dummy data, and wiring props unless the user explicitly asks for logic implementations.
+  - When adding or changing functions that affect app behavior, the AI must first confirm intent with the user and explain the change.
+  - If the user says they will introduce functionality themselves, the AI must not implement real logic and should instead leave clear comments/placeholder code where that functionality will go.
+
+- **Tailwind & styles**
+  - Use Tailwind utility classes directly in JSX for layout and spacing; avoid introducing complex custom CSS unless the user asks for it.
+  - Treat the Dribbble-inspired design and Healio logo as visual direction, but leave final color and spacing decisions to the user.
+
