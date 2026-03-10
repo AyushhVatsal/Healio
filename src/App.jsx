@@ -1,12 +1,24 @@
-import DashboardLayout from "./layouts/DashboardLayout.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DashboardLayout from "./layouts/DashboardLayout";
+import Welcome from "./pages/Welcome";
+import Dashboard from "./pages/Dashboard";
+import AddHabit from "./pages/AddHabit";
+import Insights from "./pages/Insights";
 
-function App() {
+export default function App() {
   return (
-    <DashboardLayout>
-      <Dashboard />
-    </DashboardLayout>
+    <BrowserRouter>
+      <Routes>
+        {/* Welcome page — no sidebar */}
+        <Route path="/" element={<Welcome />} />
+
+        {/* App pages — with sidebar */}
+        <Route element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/add" element={<AddHabit />} />
+          <Route path="/insights" element={<Insights />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
